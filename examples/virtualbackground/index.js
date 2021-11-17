@@ -9,6 +9,7 @@ const gaussianBlurButton = document.querySelector('button#gaussianBlur-Apply');
 const virtualBackgroundForm = document.querySelector('form#virtualBackground-Form');
 const virtualBackgroundButton = document.querySelector('button#virtualBackground-Apply');
 const removeProcessorButton = document.querySelector('button#no-processor-apply');
+const toggleAudioMuteButton = document.querySelector('button#toggle-audio-mute');
 const errorMessage = document.querySelector('div.modal-body');
 const errorModal = new bootstrap.Modal(document.querySelector('div#errorModal'));
 
@@ -204,3 +205,17 @@ removeProcessorButton.onclick = event => {
     setProcessor(null, videoTracks[videoTrack]);
   }
 };
+
+toggleAudioMuteButton.onclick = event => {
+  event.preventDefault();
+
+  console.log('localParticipant', room.localParticipant);
+  room.localParticipant.audioTracks.forEach(({ track }) => {
+    if (track.isEnabled) {
+      track.disable();
+    } else {
+      track.enable();
+    }
+  });
+  console.log('localParticipant', room.localParticipant);
+}

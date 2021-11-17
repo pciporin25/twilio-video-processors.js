@@ -78,3 +78,7 @@ video {
     height: 60%;
   }
 }
+
+#toggle-audio-mute {
+  margin-top: 8px;
+}
